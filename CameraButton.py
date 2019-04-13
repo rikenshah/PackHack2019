@@ -13,7 +13,7 @@ buttonyellow = Button(18)
 buttonyellow.wait_for_press()
 camera.capture('images/buttonrpi-yellow.jpg')
 
-buttonred = Button(1)
+buttonred = Button(27)
 buttonred.wait_for_press()
 camera.capture('images/buttonrpi-red.jpg')
 
