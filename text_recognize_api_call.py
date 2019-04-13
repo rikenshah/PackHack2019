@@ -1,5 +1,4 @@
 import requests
-import matplotlib.pyplot as plt
 from PIL import Image
 from io import BytesIO
 import operator
