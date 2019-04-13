@@ -18,6 +18,7 @@ def face_detect():
 
     # Set image_path to the local path of an image that you want to analyze.
     image_path = "images/emotions/disgusted.jpg"
+    #image_path = "images/TrainStation.jpg"
 
     # Read the image into a byte array
     image_data = open(image_path, "rb").read()
@@ -32,9 +33,12 @@ def face_detect():
     analysis = response.json()
     # emotion = []
     # print(analysis)
-    for face in analysis:
-        # emotion.append(max(dict(face["faceAttributes"]["emotion"]).items(), key=operator.itemgetter(1))[0])
-        emotion = max(dict(face["faceAttributes"]["emotion"]).items(), key=operator.itemgetter(1))[0]
+    if analysis:
+        for face in analysis:
+            # emotion.append(max(dict(face["faceAttributes"]["emotion"]).items(), key=operator.itemgetter(1))[0])
+            emotion = max(dict(face["faceAttributes"]["emotion"]).items(), key=operator.itemgetter(1))[0]
+    else:
+        emotion = ""
 
     print(emotion)
     with open('end_result.json', 'r') as f:
