@@ -10,6 +10,7 @@ import json
 
 def text_recognize(lock):
     lock.acquire()
+    
     # Replace <Subscription Key> with your valid subscription key.
     print("Start Recognize Text")
     subscription_key = "2b04c53c5c59481e82fbf2b164ed5838"
