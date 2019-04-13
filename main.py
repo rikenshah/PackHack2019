@@ -36,11 +36,9 @@ def main():
     
     button_green = Button(17)
     button_red = Button(15)
+    engine.say(end_result["description"])
+    engine.runAndWait()
     print(end_result)
-
-    if end_result["description"]:
-        engine.say(end_result["description"])
-        engine.runAndWait()
 
     if end_result["emotion"]:
         engine.say("A face is detected, do you want to know the emotion?")
@@ -49,18 +47,18 @@ def main():
         while True:
             button_green.when_pressed = emotion_yes_pressed
             button_red.when_pressed = no_pressed
-            # print("GREEN EMOTION" + str(green_pressed))
+            #print("GREEN EMOTION" + str(green_pressed))
             if green_pressed or red_pressed:
                 break
 
-    if end_result["text"]:
+    elif end_result["text"]:
         engine.say("Image has some text, do you want to listen?")
         engine.runAndWait()
         green_pressed, red_pressed = False, False
         while True:
             button_green.when_pressed = text_yes_pressed
             button_red.when_pressed = no_pressed
-            # print("GREEN TEXT" + str(green_pressed))
+            #print("GREEN TEXT" + str(green_pressed))
             if green_pressed or red_pressed:
                 break
         
@@ -87,11 +85,16 @@ def no_pressed():
     red_pressed = True
 
 
+def cb(name):
+    print(name)
+    
+    
 if __name__=='__main__':
     green_pressed = False
     red_pressed = False
     manager = Manager()
     engine = pyttsx3.init()
+    engine.connect('started-utterance', cb)
     end_result = manager.dict()
     end_result['description'] = ''
     end_result['text'] = ''
