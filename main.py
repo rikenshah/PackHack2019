@@ -12,6 +12,8 @@ class ButtonPressed(Exception): pass
 def main():
     global end_result
     global engine
+    global green_pressed
+    global red_pressed
     image_path = "images/buttonrpi-yellow.jpg"
 
     camera = PiCamera()
@@ -45,6 +47,7 @@ def main():
         while True:
             button_green.when_pressed = emotion_yes_pressed
             button_red.when_pressed = no_pressed
+            print("GREEN EMOTION" + str(green_pressed))
             if green_pressed or red_pressed:
                 break
 
@@ -55,6 +58,7 @@ def main():
         while True:
             button_green.when_pressed = text_yes_pressed
             button_red.when_pressed = no_pressed
+            print("GREEN TEXT" + str(green_pressed))
             if green_pressed or red_pressed:
                 break
         
@@ -62,6 +66,7 @@ def main():
 
 def emotion_yes_pressed():
     global engine
+    global green_pressed
     engine.say(end_result["emotion"])
     engine.runAndWait()
     green_pressed = True
@@ -69,12 +74,14 @@ def emotion_yes_pressed():
 
 def text_yes_pressed():
     global engine
+    global green_pressed
     engine.say(end_result["text"])
     engine.runAndWait()
     green_pressed = True
 
 
 def no_pressed():
+    global red_pressed
     red_pressed = True
 
 
