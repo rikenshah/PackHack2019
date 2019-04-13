@@ -9,7 +9,8 @@ from gpiozero import Button
 class ButtonPressed(Exception): pass
 
 def main():
-    
+    global end_result
+    global engine
     p_face_detect = Process(target=face_detect, args = [end_result])
     p_image_analyze = Process(target=image_analyze, args = [end_result])
     p_text_recognize = Process(target=text_recognize, args = [end_result])
@@ -41,12 +42,14 @@ def main():
 
 
 def emotion_yes_pressed():
+    global engine
     engine.say(end_result["emotion"])
     engine.runAndWait()
     raise ButtonPressed
 
 
 def text_yes_pressed():
+    global engine
     engine.say(end_result["text"])
     engine.runAndWait()
     raise ButtonPressed
@@ -57,8 +60,6 @@ def no_pressed():
 
 
 if __name__=='__main__':
-    global end_result
-    global engine
     manager = Manager()
     engine = pyttsx3.init()
     end_result = manager.dict()

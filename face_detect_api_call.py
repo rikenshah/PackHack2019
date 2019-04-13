@@ -39,6 +39,7 @@ def face_detect(ans_dict):
             emotion = max(dict(face["faceAttributes"]["emotion"]).items(), key=operator.itemgetter(1))[0]
     else:
         emotion = ""
+    print(emotion)
     ans_dict['emotion'] = emotion
 
 if __name__=='__main__':
