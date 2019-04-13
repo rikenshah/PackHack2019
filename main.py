@@ -4,20 +4,23 @@ from vision_analyze_api_call import image_analyze
 from text_recognize_api_call import text_recognize
 import sys
 import pyttsx3
+import time
 from gpiozero import Button
 from picamera import PiCamera
+from signal import pause
 
 class ButtonPressed(Exception): pass
 
 def main():
     global end_result
     global engine
-    global green_pressed
-    global red_pressed
+    global pressed
     global camera
     global button_green
     global button_red
     global button_yellow
+    button_green.when_pressed = None
+    button_red.when_pressed = None
     image_path = "images/buttonrpi-yellow.jpg"
     
     camera.start_preview(alpha=200)
@@ -45,49 +48,50 @@ def main():
     if end_result["emotion"]:
         engine.say("A face is detected, do you want to know the emotion?")
         engine.runAndWait()
-        green_pressed, red_pressed = False, False
+        pressed = False
         while True:
             button_green.when_pressed = emotion_yes_pressed
             button_red.when_pressed = no_pressed
             #print("GREEN EMOTION" + str(green_pressed))
-            if green_pressed or red_pressed:
+            if pressed:
                 break
 
-    elif end_result["text"]:
+    if end_result["text"]:
         engine.say("Image has some text, do you want to listen?")
         engine.runAndWait()
-        green_pressed, red_pressed = False, False
+        pressed = False
         while True:
             button_green.when_pressed = text_yes_pressed
             button_red.when_pressed = no_pressed
             #print("GREEN TEXT" + str(green_pressed))
-            if green_pressed or red_pressed:
+            if pressed:
                 break
         
 
 def emotion_yes_pressed():
+    print("Bakchodi1")
     global engine
-    global green_pressed
+    global pressed
+    pressed = True
     engine.say(end_result["emotion"])
     engine.runAndWait()
-    green_pressed = True
 
 
 def text_yes_pressed():
     global engine
-    global green_pressed
+    global pressed
+    pressed = True
     engine.say(end_result["text"])
     engine.runAndWait()
-    green_pressed = True
 
 
 def no_pressed():
-    global red_pressed
-    red_pressed = True
+    global pressed
+    pressed = True
 
 
 def cb(name):
-    print(name)
+    pass
     
     
 if __name__=='__main__':
@@ -98,9 +102,8 @@ if __name__=='__main__':
     button_red = Button(15)
     button_yellow = Button(18)
     engine.connect('started-utterance', cb)
+    pressed = False
     while True:
-        green_pressed = False
-        red_pressed = False  
         end_result = manager.dict()
         end_result['description'] = ''
         end_result['text'] = ''
