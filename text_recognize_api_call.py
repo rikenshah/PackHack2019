@@ -29,12 +29,14 @@ def text_recognize():
         analyze_url, headers=headers, params=params, data=image_data)
     response.raise_for_status()
 
-    time.sleep(2)
+    time.sleep(3)
 
     headers_second = {'Ocp-Apim-Subscription-Key': subscription_key}
     url_second = response.headers["Operation-Location"]
     response_second = requests.get(url_second, headers=headers_second)
-    pprint(vars(response_second))
+    text_result = response_second.json()
+    print(text_result)
+    # pprint(vars(response_second))
 
 
 if __name__=='__main__':
