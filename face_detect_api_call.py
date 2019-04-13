@@ -6,7 +6,7 @@ import operator
 import json
 
 
-def face_detect(ans_dict):
+def face_detect(ans_dict, image_path):
     print("Start Face Detect")
     # Replace <Subscription Key> with your valid subscription key.
     subscription_key = "4bf52f897b004b5ca614af2a39b82351"
@@ -17,8 +17,6 @@ def face_detect(ans_dict):
     analyze_url = vision_base_url + "detect"
 
     # Set image_path to the local path of an image that you want to analyze.
-    image_path = "images/emotions/disgusted.jpg"
-    #image_path = "images/TrainStation.jpg"
 
     # Read the image into a byte array
     image_data = open(image_path, "rb").read()

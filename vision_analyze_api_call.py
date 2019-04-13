@@ -5,7 +5,7 @@ import pyttsx3
 import json
 
 
-def image_analyze(ans_dict):
+def image_analyze(ans_dict, image_path):
     print("Start Image Analyze")
     # Replace <Subscription Key> with your valid subscription key.
     subscription_key = "2b04c53c5c59481e82fbf2b164ed5838"
@@ -16,7 +16,6 @@ def image_analyze(ans_dict):
     analyze_url = vision_base_url + "analyze"
 
     # Set image_path to the local path of an image that you want to analyze.
-    image_path = "images/Notice.jpg"
 
     # Read the image into a byte array
     image_data = open(image_path, "rb").read()

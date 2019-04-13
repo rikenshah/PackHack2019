@@ -5,15 +5,26 @@ from text_recognize_api_call import text_recognize
 import sys
 import pyttsx3
 from gpiozero import Button
+from picamera import PiCamera
 
 class ButtonPressed(Exception): pass
 
 def main():
     global end_result
     global engine
-    p_face_detect = Process(target=face_detect, args = [end_result])
-    p_image_analyze = Process(target=image_analyze, args = [end_result])
-    p_text_recognize = Process(target=text_recognize, args = [end_result])
+    image_path = "images/buttonrpi-yellow.jpg"
+
+    camera = PiCamera()
+    camera.start_preview(alpha=200)
+
+    button_yellow = Button(18)
+    button_yellow.wait_for_press()
+    camera.capture(image_path)
+    camera.stop_preview()
+
+    p_face_detect = Process(target=face_detect, args = [end_result, image_path])
+    p_image_analyze = Process(target=image_analyze, args = [end_result, image_path])
+    p_text_recognize = Process(target=text_recognize, args = [end_result, image_path])
     p_face_detect.start()
     p_image_analyze.start()
     p_text_recognize.start()
