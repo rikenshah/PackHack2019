@@ -19,7 +19,7 @@ def text_recognize():
     analyze_url = vision_base_url + "recognizeText"
 
     # Set image_path to the local path of an image that you want to analyze.
-    image_path = "images/TextTest.png"
+    image_path = "images/Crowd.jpg"
 
     # Read the image into a byte array
     image_data = open(image_path, "rb").read()
