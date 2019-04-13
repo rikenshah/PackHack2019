@@ -29,7 +29,7 @@ def image_analyze(ans_dict, image_path):
     # The 'analysis' object contains various fields that describe the image. The most
     # relevant caption for the image is obtained from the 'description' property.
     analysis = response.json()
-    # print(analysis)
+    print(analysis)
     image_caption = analysis["description"]["captions"][0]["text"].capitalize()
     print(image_caption)
     ans_dict['description'] = image_caption
