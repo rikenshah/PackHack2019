@@ -47,7 +47,7 @@ def main():
         while True:
             button_green.when_pressed = emotion_yes_pressed
             button_red.when_pressed = no_pressed
-            print("GREEN EMOTION" + str(green_pressed))
+            # print("GREEN EMOTION" + str(green_pressed))
             if green_pressed or red_pressed:
                 break
 
@@ -58,7 +58,7 @@ def main():
         while True:
             button_green.when_pressed = text_yes_pressed
             button_red.when_pressed = no_pressed
-            print("GREEN TEXT" + str(green_pressed))
+            # print("GREEN TEXT" + str(green_pressed))
             if green_pressed or red_pressed:
                 break
         
