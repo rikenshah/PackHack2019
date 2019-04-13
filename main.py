@@ -41,7 +41,7 @@ def main():
     if end_result["emotion"]:
         engine.say("A face is detected, do you want to know the emotion?")
         engine.runAndWait()
-        green_pressed, red_pressed = False
+        green_pressed, red_pressed = False, False
         while True:
             button_green.when_pressed = emotion_yes_pressed
             button_red.when_pressed = no_pressed
