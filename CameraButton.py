@@ -4,7 +4,7 @@ from time import sleep
 
 camera = PiCamera()
 
-button = Button(2)
+button = Button(17)
 
 camera.start_preview(alpha=200)
 
