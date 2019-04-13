@@ -6,7 +6,8 @@ import operator
 import json
 
 
-def face_detect():
+def face_detect(lock):
+    lock.acquire()
     print("Start Face Detect")
     # Replace <Subscription Key> with your valid subscription key.
     subscription_key = "4bf52f897b004b5ca614af2a39b82351"
@@ -47,7 +48,7 @@ def face_detect():
     end_result["emotion"] = emotion
     with open('end_result.json', 'w') as f:
         json.dump(end_result, f)
-
+    lock.release()
 
 if __name__=='__main__':
     face_detect()

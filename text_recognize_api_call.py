@@ -8,7 +8,8 @@ import json
 # import pyttsx3
 
 
-def text_recognize():
+def text_recognize(lock):
+    lock.acquire()
     # Replace <Subscription Key> with your valid subscription key.
     print("Start Recognize Text")
     subscription_key = "2b04c53c5c59481e82fbf2b164ed5838"
@@ -19,7 +20,7 @@ def text_recognize():
     analyze_url = vision_base_url + "recognizeText"
 
     # Set image_path to the local path of an image that you want to analyze.
-    image_path = "images/Crowd.jpg"
+    image_path = "images/TextTest.png"
 
     # Read the image into a byte array
     image_data = open(image_path, "rb").read()
@@ -53,7 +54,8 @@ def text_recognize():
     end_result["text"] = text
     with open('end_result.json', 'w') as f:
         json.dump(end_result, f)
+    lock.release()
 
 
 if __name__=='__main__':
-    text_recognize()
+    text_recognize(lock)
