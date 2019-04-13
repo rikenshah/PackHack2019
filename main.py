@@ -88,13 +88,14 @@ def no_pressed():
 
 
 if __name__=='__main__':
-    green_pressed = False
-    red_pressed = False
     manager = Manager()
     engine = pyttsx3.init()
-    end_result = manager.dict()
-    end_result['description'] = ''
-    end_result['text'] = ''
-    end_result['emotion'] = ''
+    while True:
+        green_pressed = False
+        red_pressed = False  
+        end_result = manager.dict()
+        end_result['description'] = ''
+        end_result['text'] = ''
+        end_result['emotion'] = ''
 
-    main()
+        main()
