@@ -1,6 +1,7 @@
 from multiprocessing import Process
 from face_detect_api_call import face_detect
 from vision_analyze_api_call import image_analyze
+from text_recognize_api_call import text_recognize
 import sys
 
 def main():

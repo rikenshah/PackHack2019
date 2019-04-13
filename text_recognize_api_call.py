@@ -10,7 +10,7 @@ import json
 
 def text_recognize():
     # Replace <Subscription Key> with your valid subscription key.
-    print("Start Recohnize Text")
+    print("Start Recognize Text")
     subscription_key = "2b04c53c5c59481e82fbf2b164ed5838"
     assert subscription_key
 
@@ -50,7 +50,7 @@ def text_recognize():
     with open('end_result.json', 'r') as f:
         end_result = json.load(f)
         
-    end_result["description"] = image_caption
+    end_result["text"] = text
     with open('end_result.json', 'w') as f:
         json.dump(end_result, f)
 
