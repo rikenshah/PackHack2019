@@ -5,10 +5,10 @@ GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(15, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 while True:
-    print(".", end='')
+    # print(".", end='')
 # GPIO.output(23, True)
-    print(str(GPIO.input(17)) + "----------")
-    if(GPIO.input(17) == False):
+    # print(str(GPIO.input(17)) + "----------")
+    if(GPIO.input(17) == GPIO.HIGH):
         print ("Pin 17 / Green Button is true")
         # do stuff based on pin 25 here
     """elif(GPIO.input(18) == False):
