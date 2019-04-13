@@ -14,12 +14,14 @@ def main():
     global engine
     global green_pressed
     global red_pressed
+    global camera
+    global button_green
+    global button_red
+    global button_yellow
     image_path = "images/buttonrpi-yellow.jpg"
-
-    camera = PiCamera()
+    
     camera.start_preview(alpha=200)
-
-    button_yellow = Button(18)
+    
     button_yellow.wait_for_press()
     camera.capture(image_path)
     camera.stop_preview()
@@ -34,11 +36,11 @@ def main():
     p_image_analyze.join()
     p_text_recognize.join()
     
-    button_green = Button(17)
-    button_red = Button(15)
-    engine.say(end_result["description"])
-    engine.runAndWait()
     print(end_result)
+
+    if end_result["description"]:
+        engine.say(end_result["description"])
+        engine.runAndWait()
 
     if end_result["emotion"]:
         engine.say("A face is detected, do you want to know the emotion?")
@@ -62,7 +64,6 @@ def main():
             if green_pressed or red_pressed:
                 break
         
-
 
 def emotion_yes_pressed():
     global engine
@@ -92,6 +93,10 @@ def cb(name):
 if __name__=='__main__':
     manager = Manager()
     engine = pyttsx3.init()
+    camera = PiCamera()
+    button_green = Button(17)
+    button_red = Button(15)
+    button_yellow = Button(18)
     engine.connect('started-utterance', cb)
     while True:
         green_pressed = False
