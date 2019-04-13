@@ -51,7 +51,7 @@ def main():
             if green_pressed or red_pressed:
                 break
 
-    elif end_result["text"]:
+    if end_result["text"]:
         engine.say("Image has some text, do you want to listen?")
         engine.runAndWait()
         green_pressed, red_pressed = False, False
