@@ -3,9 +3,10 @@
 # GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 # GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 # GPIO.setup(15, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-def green_pressed:
-    print("LOLOLO")
 from gpiozero import Button
+
+def green_pressed():
+    print("LOLOLO")
 
 button_green = Button(17)
 
