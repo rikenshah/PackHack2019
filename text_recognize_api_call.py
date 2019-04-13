@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 from PIL import Image
 from io import BytesIO
 import operator
-from pprint import pprint
 import time
+import json
 # import pyttsx3
 
 

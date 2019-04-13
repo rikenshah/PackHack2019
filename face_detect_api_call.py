@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from PIL import Image
 from io import BytesIO
 import operator
+import json
 
 
 def face_detect():
@@ -29,12 +30,19 @@ def face_detect():
 
     # The 'analysis' object contains various fields that describe the image.
     analysis = response.json()
-    emotion = []
+    # emotion = []
     # print(analysis)
     for face in analysis:
-        emotion.append(max(dict(face["faceAttributes"]["emotion"]).items(), key=operator.itemgetter(1))[0])
+        # emotion.append(max(dict(face["faceAttributes"]["emotion"]).items(), key=operator.itemgetter(1))[0])
+        emotion = max(dict(face["faceAttributes"]["emotion"]).items(), key=operator.itemgetter(1))[0]
 
     print(emotion)
+    with open('end_result.json', 'r') as f:
+        end_result = json.load(f)
+
+    end_result["emotion"] = emotion
+    with open('end_result.json', 'w') as f:
+        json.dump(end_result, f)
 
 
 if __name__=='__main__':

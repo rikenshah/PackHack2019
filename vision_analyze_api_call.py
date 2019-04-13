@@ -2,6 +2,7 @@ import requests
 from PIL import Image
 from io import BytesIO
 import pyttsx3
+import json
 
 
 def image_analyze():
@@ -32,6 +33,13 @@ def image_analyze():
     # print(analysis)
     image_caption = analysis["description"]["captions"][0]["text"].capitalize()
     print(image_caption)
+
+    with open('end_result.json', 'r') as f:
+        end_result = json.load(f)
+        
+    end_result["description"] = image_caption
+    with open('end_result.json', 'w') as f:
+        json.dump(end_result, f)
 
 
 if __name__=='__main__':
