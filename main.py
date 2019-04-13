@@ -41,42 +41,46 @@ def main():
     if end_result["emotion"]:
         engine.say("A face is detected, do you want to know the emotion?")
         engine.runAndWait()
-        try:
-            while True:
-                button_green.when_pressed = emotion_yes_pressed
-                button_red.when_pressed = no_pressed
-        except ButtonPressed:
-            pass
+        green_pressed, red_pressed = False
+        while True:
+            button_green.when_pressed = emotion_yes_pressed
+            button_red.when_pressed = no_pressed
+            if green_pressed or red_pressed:
+                break
+
     elif end_result["text"]:
         engine.say("Image has some text, do you want to listen?")
         engine.runAndWait()
-        try:
-            while True:
-                button_green.when_pressed = text_yes_pressed
-                button_red.when_pressed = no_pressed
-        except ButtonPressed:
-            pass
+        green_pressed, red_pressed = False, False
+        while True:
+            button_green.when_pressed = text_yes_pressed
+            button_red.when_pressed = no_pressed
+            if green_pressed or red_pressed:
+                break
+        
 
 
 def emotion_yes_pressed():
     global engine
     engine.say(end_result["emotion"])
     engine.runAndWait()
-    raise ButtonPressed
+    green_pressed = True
 
 
 def text_yes_pressed():
     global engine
     engine.say(end_result["text"])
     engine.runAndWait()
-    raise ButtonPressed
+    green_pressed = True
 
 
 def no_pressed():
-    raise ButtonPressed
+    red_pressed = True
 
 
 if __name__=='__main__':
+    green_pressed = False
+    red_pressed = False
     manager = Manager()
     engine = pyttsx3.init()
     end_result = manager.dict()
