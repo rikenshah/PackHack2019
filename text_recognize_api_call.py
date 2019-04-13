@@ -34,8 +34,16 @@ def text_recognize():
     headers_second = {'Ocp-Apim-Subscription-Key': subscription_key}
     url_second = response.headers["Operation-Location"]
     response_second = requests.get(url_second, headers=headers_second)
+    #text Results json
     text_result = response_second.json()
-    print(text_result)
+    #All data about every line found
+    all_data = text_result['recognitionResult']['lines']
+    lines = []
+    #extracting text from every line and putting into lines
+    for data in all_data:
+        lines.append(data['text'])
+    print(lines)
+
     # pprint(vars(response_second))
 
 
