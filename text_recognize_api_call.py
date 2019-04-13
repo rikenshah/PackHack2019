@@ -8,7 +8,7 @@ import json
 # import pyttsx3
 
 
-def text_recognize():
+def text_recognize(ans_dict):
     # Replace <Subscription Key> with your valid subscription key.
     print("Start Recognize Text")
     subscription_key = "2b04c53c5c59481e82fbf2b164ed5838"
@@ -47,13 +47,7 @@ def text_recognize():
     text = ' '.join(lines)
     print(text)
 
-    with open('end_result.json', 'r') as f:
-        end_result = json.load(f)
-        
-    end_result["text"] = text
-    with open('end_result.json', 'w') as f:
-        json.dump(end_result, f)
-
+    ans_dict['text'] = text
 
 if __name__=='__main__':
     text_recognize()

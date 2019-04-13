@@ -6,7 +6,7 @@ import operator
 import json
 
 
-def face_detect():
+def face_detect(ans_dict):
     print("Start Face Detect")
     # Replace <Subscription Key> with your valid subscription key.
     subscription_key = "4bf52f897b004b5ca614af2a39b82351"
@@ -39,15 +39,7 @@ def face_detect():
             emotion = max(dict(face["faceAttributes"]["emotion"]).items(), key=operator.itemgetter(1))[0]
     else:
         emotion = ""
-
-    print(emotion)
-    with open('end_result.json', 'r') as f:
-        end_result = json.load(f)
-
-    end_result["emotion"] = emotion
-    with open('end_result.json', 'w') as f:
-        json.dump(end_result, f)
-
+    ans_dict['emotion'] = emotion
 
 if __name__=='__main__':
     face_detect()
