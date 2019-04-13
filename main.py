@@ -41,15 +41,21 @@ def main():
     if end_result["emotion"]:
         engine.say("A face is detected, do you want to know the emotion?")
         engine.runAndWait()
-        while True:
-            button_green.when_pressed = emotion_yes_pressed
-            button_red.when_pressed = no_pressed
+        try:
+            while True:
+                button_green.when_pressed = emotion_yes_pressed
+                button_red.when_pressed = no_pressed
+        except ButtonPressed:
+            pass
     elif end_result["text"]:
         engine.say("Image has some text, do you want to listen?")
         engine.runAndWait()
-        while True:
-            button_green.when_pressed = text_yes_pressed
-            button_red.when_pressed = no_pressed
+        try:
+            while True:
+                button_green.when_pressed = text_yes_pressed
+                button_red.when_pressed = no_pressed
+        except ButtonPressed:
+            pass
 
 
 def emotion_yes_pressed():
