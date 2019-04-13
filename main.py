@@ -1,4 +1,4 @@
-from multiprocessing import Process
+from multiprocessing import Process, Manager
 from face_detect_api_call import face_detect
 from vision_analyze_api_call import image_analyze
 from text_recognize_api_call import text_recognize
@@ -7,9 +7,15 @@ import pyttsx3
 from gpiozero import Button
 
 def main():
-    p_face_detect = Process(target=face_detect)
-    p_image_analyze = Process(target=image_analyze)
-    p_text_recognize = Process(target=text_recognize)
+    manager = Manager()
+    end_result = manager.dict()
+    end_result['description']=''
+    end_result['text']=''
+    end_result['emotion']=''
+
+    p_face_detect = Process(target=face_detect, args = [end_result])
+    p_image_analyze = Process(target=image_analyze, args = [end_result])
+    p_text_recognize = Process(target=text_recognize, args = [end_result])
     p_face_detect.start()
     p_image_analyze.start()
     p_text_recognize.start()
@@ -17,15 +23,13 @@ def main():
     p_image_analyze.join()
     p_text_recognize.join()
     
-    with open('end_result.json', 'r') as f:
-        end_result = json.load(f)
 
     engine = pyttsx3.init()
-    button_green = Button(17)
-    button_red = Button(15)
+    #button_green = Button(17)
+    #button_red = Button(15)
     engine.say(end_result["description"])
     engine.runAndWait()
-
+    print(end_result)
     # if end_result["emotion"]:
     #     engine.say("A face is detected, do you want to know the emotion?")
     #     engine.runAndWait()

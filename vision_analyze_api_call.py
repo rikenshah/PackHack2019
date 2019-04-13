@@ -5,7 +5,7 @@ import pyttsx3
 import json
 
 
-def image_analyze():
+def image_analyze(ans_dict):
     print("Start Image Analyze")
     # Replace <Subscription Key> with your valid subscription key.
     subscription_key = "2b04c53c5c59481e82fbf2b164ed5838"
@@ -33,14 +33,7 @@ def image_analyze():
     # print(analysis)
     image_caption = analysis["description"]["captions"][0]["text"].capitalize()
     print(image_caption)
-
-    with open('end_result.json', 'r') as f:
-        end_result = json.load(f)
-        
-    end_result["description"] = image_caption
-    with open('end_result.json', 'w') as f:
-        json.dump(end_result, f)
-
+    ans_dict['description'] = image_caption
 
 if __name__=='__main__':
     image_analyze()
