@@ -11,7 +11,7 @@ def green_pressed():
 button_green = Button(17)
 
 while True:
-    button_green.when_pressed(green_pressed)
+    button_green.when_pressed = green_pressed
 #     # print(".", end='')
 # # GPIO.output(23, True)
 #     # print(str(GPIO.input(17)) + "----------")
