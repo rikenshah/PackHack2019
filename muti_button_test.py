@@ -8,7 +8,7 @@ while True:
     # print(".", end='')
 # GPIO.output(23, True)
     # print(str(GPIO.input(17)) + "----------")
-    if(GPIO.input(17) == GPIO.HIGH):
+    if(GPIO.input(17)):
         print ("Pin 17 / Green Button is true")
         # do stuff based on pin 25 here
     """elif(GPIO.input(18) == False):
