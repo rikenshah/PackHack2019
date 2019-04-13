@@ -36,9 +36,11 @@ def main():
     
     button_green = Button(17)
     button_red = Button(15)
-    engine.say(end_result["description"])
-    engine.runAndWait()
     print(end_result)
+
+    if end_result["description"]:
+        engine.say(end_result["description"])
+        engine.runAndWait()
 
     if end_result["emotion"]:
         engine.say("A face is detected, do you want to know the emotion?")
