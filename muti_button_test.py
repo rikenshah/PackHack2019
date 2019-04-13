@@ -7,12 +7,12 @@ GPIO.setup(15, GPIO.IN)
 while True:
     print(".", end='')
 # GPIO.output(23, True)
-    if(GPIO.input(17) == True):
+    if(GPIO.input(17) == False):
         print ("Pin 17 / Green Button is true")
         # do stuff based on pin 25 here
-    elif(GPIO.input(18) == True):
+    elif(GPIO.input(18) == False):
         print ("Pin 18 / Yellow Button is true")
         # do stuff based on pin 18 here
-    elif(GPIO.input(15) == True):
+    elif(GPIO.input(15) == False):
         print ("Pin 15 / Red Button is true")
         # and again for pin 22
