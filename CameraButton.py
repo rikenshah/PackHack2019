@@ -10,5 +10,5 @@ camera.start_preview(alpha=200)
 
 button.wait_for_press()
 
-camera.capture('/images/buttonrpi.jpg')
+camera.capture('images/buttonrpi.jpg')
 camera.stop_preview()
