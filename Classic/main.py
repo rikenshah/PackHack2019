@@ -22,8 +22,8 @@ def main():
     button_green.when_pressed = None
     button_red.when_pressed = None
     button_red.when_held = exit_flow
-    image_path = "images/buttonrpi-yellow.jpg"
-    
+    image_path = "../images/buttonrpi-yellow.jpg"
+
     camera.start_preview(alpha=200)
     camera.rotation = 270
     button_yellow.wait_for_press()
@@ -39,7 +39,7 @@ def main():
     p_face_detect.join()
     p_image_analyze.join()
     p_text_recognize.join()
-    
+
     print(end_result)
 
     if end_result["description"]:
@@ -69,10 +69,10 @@ def main():
                 break
 
     with open("output.txt", "a") as f:
-        f.write("Description: " + end_result["description"] + "\nEmotion: " + end_result["emotion"] + "\nText: " 
+        f.write("Description: " + end_result["description"] + "\nEmotion: " + end_result["emotion"] + "\nText: "
             + end_result["text"] + "\n----------------------\n")
-        
-        
+
+
 def say(something):
     global engine
     global pressed
@@ -97,8 +97,8 @@ def exit_flow():
 
 def cb(name):
     pass
-    
-    
+
+
 if __name__=='__main__':
     manager = Manager()
     engine = pyttsx3.init()
