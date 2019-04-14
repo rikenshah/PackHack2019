@@ -13,5 +13,13 @@ while True:
     client_sock, address = server.accept()
     print('Accepted connection from {}:{}'.format(address[0], address[1]))
     data = client_sock.recv(1024)
+    if int(data) == 1:
+        print("GOt 1")
+    if int(data) == 2:
+        print("GOt 2")
+    if int(data) == 3:
+        print("GOt 3")
+    if int(data) == 4:
+        print("GOt 4")
     print(data)
 
