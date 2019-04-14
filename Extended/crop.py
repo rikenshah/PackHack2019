@@ -2,7 +2,7 @@ from PIL import Image
 
 def crop_image(path, section, save=False):
 	original = Image.open(path)
-
+	filename, file_extension = os.path.splitext(path)
 	width, height = original.size
 
 	if section == 1:
@@ -27,6 +27,7 @@ def crop_image(path, section, save=False):
 		bottom = height
 	else:
 		return
-
+	if(save):
+		path = 'images/cropped'+str(file_extension)
 	cropped_example = original.crop((left, top, right, bottom))
 	cropped_example.save(path)
