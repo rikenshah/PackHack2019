@@ -1,11 +1,11 @@
 import requests
-import matplotlib.pyplot as plt
 from PIL import Image
 from io import BytesIO
 import operator
+import json
 
 
-def face_detect():
+def face_detect(ans_dict, image_path):
     print("Start Face Detect")
     # Replace <Subscription Key> with your valid subscription key.
     subscription_key = "4bf52f897b004b5ca614af2a39b82351"
@@ -16,7 +16,6 @@ def face_detect():
     analyze_url = vision_base_url + "detect"
 
     # Set image_path to the local path of an image that you want to analyze.
-    image_path = "images/emotions/disgusted.jpg"
 
     # Read the image into a byte array
     image_data = open(image_path, "rb").read()
@@ -29,13 +28,16 @@ def face_detect():
 
     # The 'analysis' object contains various fields that describe the image.
     analysis = response.json()
-    emotion = []
+    # emotion = []
     # print(analysis)
-    for face in analysis:
-        emotion.append(max(dict(face["faceAttributes"]["emotion"]).items(), key=operator.itemgetter(1))[0])
-
+    if analysis:
+        for face in analysis:
+            # emotion.append(max(dict(face["faceAttributes"]["emotion"]).items(), key=operator.itemgetter(1))[0])
+            emotion = max(dict(face["faceAttributes"]["emotion"]).items(), key=operator.itemgetter(1))[0]
+    else:
+        emotion = ""
     print(emotion)
-
+    ans_dict['emotion'] = emotion
 
 if __name__=='__main__':
     face_detect()
