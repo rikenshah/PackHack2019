@@ -25,7 +25,7 @@ def main():
     image_path = "images/buttonrpi-yellow.jpg"
     
     camera.start_preview(alpha=200)
-    
+    camera.rotation = 270
     button_yellow.wait_for_press()
     camera.capture(image_path)
     camera.stop_preview()
@@ -45,7 +45,7 @@ def main():
     if end_result["description"]:
         engine.say(end_result["description"])
         engine.runAndWait()
-
+    # 47
     if end_result["emotion"]:
         engine.say("A face is detected, do you want to know the emotion?")
         engine.runAndWait()
@@ -68,23 +68,19 @@ def main():
             if pressed:
                 break
         
+def say(something):
+    global engine
+    global pressed
+    pressed = True
+    engine.say(something)
+    #engine.runAndWait()
+
 
 def emotion_yes_pressed():
-    print("Bakchodi1")
-    global engine
-    global pressed
-    pressed = True
-    engine.say(end_result["emotion"])
-    engine.runAndWait()
-
+    say(end_result["emotion"])
 
 def text_yes_pressed():
-    global engine
-    global pressed
-    pressed = True
-    engine.say(end_result["text"])
-    engine.runAndWait()
-
+    say(end_result["text"])
 
 def no_pressed():
     global pressed
@@ -98,7 +94,7 @@ def cb(name):
 if __name__=='__main__':
     manager = Manager()
     engine = pyttsx3.init()
-    engine.setProperty('rate', 100)
+    engine.setProperty('rate', 145)
     engine.setProperty('volume', 1)
     engine.setProperty('voice', 'english+f1')
     camera = PiCamera()
