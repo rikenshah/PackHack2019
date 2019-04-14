@@ -1,14 +1,18 @@
-# PackHacks 2019
+# iBuddy (PackHacks 2019)
 
-### Workflow Examples
+## What it does
 
-- User can interact with iBuddy using three buttons, Red, Green and Yellow.
-- The screen preview camera view and also shows the output of the analysis
+The application is divided into two parts.
+1. Image analysis using tactile interface
+2. Gesture controlled directional image analysis
 
-##### Use cases of buttons
-- **Yellow Button**: Click picture of the camera view
+## Workflow
+
+- A user can interact with iBuddy using three buttons, Red, Green, and Yellow.
+- The screen preview camera view and also shows the output of the analysis##### Use cases of buttons
+- **Yellow Button**: Click a picture of the camera view
 - **Red Button**: Answer No
-- **Green Button**: Answer Yes 
+- **Green Button**: Answer Yes
 
 #### Tactile Interface for human face analysis
 
@@ -61,3 +65,38 @@ Text:
 
 Gesture Recognition
 <img src="https://user-images.githubusercontent.com/15925203/56093163-0b0b3c80-5e93-11e9-9a50-58115d8f0429.jpg" alt="Input Image" style="width:400px;"/>
+
+## How we built it
+
+#### Technologies used
+- Python 
+- Leap Motion
+- Raspberry-pi
+- Azure
+- Natural Language Processing
+- Computer Vision
+- Ngrok 
+- Socket programming
+- Python text-to-speech
+
+## Challenges we ran into
+
+- Setting up R-pi 
+- Integrating leap motion
+
+## Accomplishments that we are proud of
+
+- Working product
+- Successful gesture controlled directional analysis
+- Low latency
+- Good Accuracy
+
+## What's next for iBuddy
+
+- 360-degree image analysis
+- Live video stream analysis
+- Better physical device and integration
+
+[GitHub](https://github.com/rikenshah/PackHacks2019)
+
+
