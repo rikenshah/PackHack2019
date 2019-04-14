@@ -60,8 +60,8 @@ class SampleListener(Leap.Listener):
                     clockwiseness = "clockwise"
                 else:
                     clockwiseness = "counterclockwise"
-            print("Circle in direction : {}".format(finger_direction))
-            s.sendall(f_dir_id.encode())
+                print("Circle in direction : {}".format(finger_direction))
+                s.sendall(f_dir_id.encode())
         time.sleep(0.3)
 
     def state_string(self, state):
