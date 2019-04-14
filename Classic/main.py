@@ -2,7 +2,7 @@ from multiprocessing import Process, Manager
 from face_detect_api_call import face_detect
 from vision_analyze_api_call import image_analyze
 from text_recognize_api_call import text_recognize
-import sys
+import sys, os
 import pyttsx3
 import time
 from gpiozero import Button
