@@ -1,10 +1,11 @@
 from PIL import Image
+import os
 
 def crop_image(path, section, save=False):
 	original = Image.open(path)
 	filename, file_extension = os.path.splitext(path)
 	width, height = original.size
-
+	print(width, height)
 	if section == 1:
 		left = 0
 		top = 0
@@ -29,5 +30,7 @@ def crop_image(path, section, save=False):
 		return
 	if(save):
 		path = 'images/cropped'+str(file_extension)
+	print((left, top, right, bottom))
 	cropped_example = original.crop((left, top, right, bottom))
+	cropped_example.show()
 	cropped_example.save(path)

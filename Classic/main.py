@@ -2,12 +2,13 @@ from multiprocessing import Process, Manager
 from face_detect_api_call import face_detect
 from vision_analyze_api_call import image_analyze
 from text_recognize_api_call import text_recognize
-import sys
+import sys, os
 import pyttsx3
 import time
 from gpiozero import Button
 from picamera import PiCamera
 from signal import pause
+from filter_words import parse
 
 class ButtonPressed(Exception): pass
 
@@ -45,8 +46,10 @@ def main():
     if end_result["description"]:
         engine.say(end_result["description"])
         engine.runAndWait()
+        with open("output.txt", "a") as f:
+            f.write("Description: " + end_result["description"] + "\n")
     # 47
-    if end_result["emotion"]:
+    if parse(end_result["emotion"]):
         engine.say("A face is detected, do you want to know the emotion?")
         engine.runAndWait()
         pressed = False
@@ -57,7 +60,7 @@ def main():
             if pressed:
                 break
 
-    if end_result["text"]:
+    if parse(end_result["text"]):
         engine.say("Image has some text, do you want to listen?")
         engine.runAndWait()
         pressed = False
@@ -68,24 +71,29 @@ def main():
             if pressed:
                 break
 
-    with open("output.txt", "a") as f:
-        f.write("Description: " + end_result["description"] + "\nEmotion: " + end_result["emotion"] + "\nText: "
-            + end_result["text"] + "\n----------------------\n")
+    # with open("output.txt", "a") as f:
+    #     f.write("Description: " + end_result["description"] + "\nEmotion: " + end_result["emotion"] + "\nText: "
+    #         + end_result["text"] + "\n----------------------\n")
 
 
 def say(something):
     global engine
     global pressed
     pressed = True
-    engine.say(something)
+    engine.say(parse(something))
     #engine.runAndWait()
 
 
 def emotion_yes_pressed():
     say(end_result["emotion"])
+    with open("output.txt", "a") as f:
+        f.write("Emotion: " + end_result["emotion"] + "\n")
 
 def text_yes_pressed():
     say(end_result["text"])
+    with open("output.txt", "a") as f:
+        f.write("Text: " + end_result["text"] + "\n")
+
 
 def no_pressed():
     global pressed
@@ -119,3 +127,5 @@ if __name__=='__main__':
         end_result['emotion'] = ''
 
         main()
+        while(engine.isBusy()):
+            pass

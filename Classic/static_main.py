@@ -5,9 +5,11 @@ from text_recognize_api_call import text_recognize
 import sys
 import pyttsx3
 import time
+import os
 from gpiozero import Button
 from picamera import PiCamera
 from signal import pause
+from filter_words import parse 
 
 class ButtonPressed(Exception): pass
 
@@ -23,7 +25,7 @@ def main():
     button_red.when_pressed = None
     button_red.when_held = exit_flow
     image_path = sys.argv[1]
-    if !os.path.exists(image_path):
+    if not os.path.exists(image_path):
         print("There is some problem with the path of the image given.")
         sys.exit()
 
@@ -49,7 +51,8 @@ def main():
         engine.say(end_result["description"])
         engine.runAndWait()
     # 47
-    if end_result["emotion"]:
+   
+    if parse(end_result["emotion"]):
         engine.say("A face is detected, do you want to know the emotion?")
         engine.runAndWait()
         pressed = False
@@ -60,7 +63,7 @@ def main():
             if pressed:
                 break
 
-    if end_result["text"]:
+    if parse(end_result["text"]):
         engine.say("Image has some text, do you want to listen?")
         engine.runAndWait()
         pressed = False
@@ -75,7 +78,7 @@ def say(something):
     global engine
     global pressed
     pressed = True
-    engine.say(something)
+    engine.say(parse(something))
     #engine.runAndWait()
 
 
@@ -116,3 +119,5 @@ if __name__=='__main__':
     end_result['emotion'] = ''
 
     main()
+    while(engine.isBusy()):
+        pass
