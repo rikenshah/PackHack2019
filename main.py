@@ -93,6 +93,9 @@ def cb(name):
 if __name__=='__main__':
     manager = Manager()
     engine = pyttsx3.init()
+    engine.setProperty('rate', 100)
+    engine.setProperty('volume', 1)
+    engine.setProperty('voice', 'english+f1')
     camera = PiCamera()
     button_green = Button(17)
     button_red = Button(15)
