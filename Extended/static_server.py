@@ -39,7 +39,7 @@ while True:
     print(data)
 
     image_path = sys.argv[1]
-    if !os.path.exists(image_path):
+    if not os.path.exists(image_path):
         sys.exit()
 
     end_result = {'description':''}
@@ -47,9 +47,10 @@ while True:
     # camera.start_preview(alpha=200)
     #camera.capture(image_path)
     # camera.stop_preview()
-
+    filename, file_extension = os.path.splitext(image_path)
+    cropped_path = 'images/cropped'+str(file_extension)
     crop_image(image_path, int(data))
-    image_analyze(end_result, image_path)
+    image_analyze(end_result, cropped_path)
     print(end_result)
     if end_result["description"]:
         engine.say(end_result["description"])
