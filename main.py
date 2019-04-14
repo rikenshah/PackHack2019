@@ -21,7 +21,7 @@ def main():
     global button_yellow
     button_green.when_pressed = None
     button_red.when_pressed = None
-    button_red.when_held = sys.exit
+    button_red.when_held = exit_flow
     image_path = "images/buttonrpi-yellow.jpg"
     
     camera.start_preview(alpha=200)
@@ -85,6 +85,9 @@ def text_yes_pressed():
 def no_pressed():
     global pressed
     pressed = True
+
+def exit_flow():
+    sys.exit()
 
 
 def cb(name):
