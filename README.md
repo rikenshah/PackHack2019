@@ -26,10 +26,10 @@
 #### Tactile Interface for OCR
 
 - User clicks a picture of image with a , using Yellow Button.
-![Input Image](https://user-images.githubusercontent.com/15925203/56093170-33933680-5e93-11e9-8cf4-c4d7bbfd8a49.jpg=600x)
+Input Image
+<img src="https://user-images.githubusercontent.com/15925203/56093170-33933680-5e93-11e9-8cf4-c4d7bbfd8a49.jpg" alt="Input Image" style="width:400px;"/>
 
 #### Gesture Recognition
 
-
-![Input Image](https://user-images.githubusercontent.com/15925203/56093163-0b0b3c80-5e93-11e9-9a50-58115d8f0429.jpg=600x)
-
+Gesture Recognition
+<img src="https://user-images.githubusercontent.com/15925203/56093163-0b0b3c80-5e93-11e9-9a50-58115d8f0429.jpg" alt="Input Image" style="width:400px;"/>
