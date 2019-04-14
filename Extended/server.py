@@ -41,7 +41,6 @@ while True:
     
     camera.start_preview(alpha=200)
     camera.rotation = 270
-    button_yellow.wait_for_press()
     camera.capture(image_path)
     camera.stop_preview()
 
