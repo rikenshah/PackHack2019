@@ -21,6 +21,7 @@ def main():
     global button_yellow
     button_green.when_pressed = None
     button_red.when_pressed = None
+    button_red.when_held = sys.exit
     image_path = "images/buttonrpi-yellow.jpg"
     
     camera.start_preview(alpha=200)
@@ -104,6 +105,7 @@ if __name__=='__main__':
     button_green = Button(17)
     button_red = Button(15)
     button_yellow = Button(18)
+    button_red.hold_time = 3
     engine.connect('started-utterance', cb)
     pressed = False
     while True:
