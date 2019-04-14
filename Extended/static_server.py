@@ -1,10 +1,10 @@
 import socket
 from vision_analyze_api_call import image_analyze
-import sys
+import sys, os
 import pyttsx3
 from picamera import PiCamera
 from crop import crop_image
-
+import time
 engine = pyttsx3.init()
 engine.setProperty('rate', 145)
 engine.setProperty('volume', 1)
@@ -26,6 +26,9 @@ client_sock, address = server.accept()
 while True:
     print('Accepted connection from {}:{}'.format(address[0], address[1]))
     data = client_sock.recv(1024)
+    if not data:
+        time.sleep(1)
+        continue
     if int(data) == 1:
         print("GOt 1")
     elif int(data) == 2:
@@ -39,7 +42,7 @@ while True:
     print(data)
 
     image_path = sys.argv[1]
-    if !os.path.exists(image_path):
+    if not os.path.exists(image_path):
         sys.exit()
 
     end_result = {'description':''}
@@ -47,9 +50,10 @@ while True:
     # camera.start_preview(alpha=200)
     #camera.capture(image_path)
     # camera.stop_preview()
-
-    crop_image(image_path, int(data))
-    image_analyze(end_result, image_path)
+    filename, file_extension = os.path.splitext(image_path)
+    cropped_path = 'images/cropped'+str(file_extension)
+    crop_image(image_path, int(data), True)
+    image_analyze(end_result, cropped_path)
     print(end_result)
     if end_result["description"]:
         engine.say(end_result["description"])

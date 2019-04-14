@@ -2,12 +2,13 @@ from multiprocessing import Process, Manager
 from face_detect_api_call import face_detect
 from vision_analyze_api_call import image_analyze
 from text_recognize_api_call import text_recognize
-import sys
+import sys, os
 import pyttsx3
 import time
 from gpiozero import Button
 from picamera import PiCamera
 from signal import pause
+from filter_words import parse
 
 class ButtonPressed(Exception): pass
 
@@ -22,8 +23,8 @@ def main():
     button_green.when_pressed = None
     button_red.when_pressed = None
     button_red.when_held = exit_flow
-    image_path = "images/buttonrpi-yellow.jpg"
-    
+    image_path = "../images/buttonrpi-yellow.jpg"
+
     camera.start_preview(alpha=200)
     camera.rotation = 270
     button_yellow.wait_for_press()
@@ -39,14 +40,14 @@ def main():
     p_face_detect.join()
     p_image_analyze.join()
     p_text_recognize.join()
-    
+
     print(end_result)
 
     if end_result["description"]:
         engine.say(end_result["description"])
         engine.runAndWait()
     # 47
-    if end_result["emotion"]:
+    if parse(end_result["emotion"]):
         engine.say("A face is detected, do you want to know the emotion?")
         engine.runAndWait()
         pressed = False
@@ -57,7 +58,7 @@ def main():
             if pressed:
                 break
 
-    if end_result["text"]:
+    if parse(end_result["text"]):
         engine.say("Image has some text, do you want to listen?")
         engine.runAndWait()
         pressed = False
@@ -69,15 +70,15 @@ def main():
                 break
 
     with open("output.txt", "a") as f:
-        f.write("Description: " + end_result["description"] + "\nEmotion: " + end_result["emotion"] + "\nText: " 
+        f.write("Description: " + end_result["description"] + "\nEmotion: " + end_result["emotion"] + "\nText: "
             + end_result["text"] + "\n----------------------\n")
-        
-        
+
+
 def say(something):
     global engine
     global pressed
     pressed = True
-    engine.say(something)
+    engine.say(parse(something))
     #engine.runAndWait()
 
 
@@ -97,8 +98,8 @@ def exit_flow():
 
 def cb(name):
     pass
-    
-    
+
+
 if __name__=='__main__':
     manager = Manager()
     engine = pyttsx3.init()
@@ -119,3 +120,5 @@ if __name__=='__main__':
         end_result['emotion'] = ''
 
         main()
+        while(engine.isBusy()):
+            pass
