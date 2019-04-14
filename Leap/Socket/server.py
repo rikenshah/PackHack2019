@@ -9,8 +9,8 @@ server.listen(5)  # max backlog of connections
 
 print('Listening on {}:{}'.format(bind_ip, bind_port))
 
+client_sock, address = server.accept()
 while True:
-    client_sock, address = server.accept()
     print('Accepted connection from {}:{}'.format(address[0], address[1]))
     data = client_sock.recv(1024)
     if int(data) == 1:
