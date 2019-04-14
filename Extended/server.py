@@ -2,6 +2,7 @@ import socket
 from vision_analyze_api_call import image_analyze
 import sys, os
 import pyttsx3
+import time
 from picamera import PiCamera
 from crop import crop_image
 
@@ -27,6 +28,7 @@ while True:
     print('Accepted connection from {}:{}'.format(address[0], address[1]))
     data = client_sock.recv(1024)
     if not data:
+        time.sleep(1)
         continue
     if int(data) == 1:
         print("GOt 1")
