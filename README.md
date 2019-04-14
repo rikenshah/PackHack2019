@@ -19,18 +19,17 @@
 - User can answer Yes/No using Green & Red Button.
 - iBuddy will prompt the response accordingly.
 
-![Input Image](https://user-images.githubusercontent.com/15925203/56093109-7dc7e800-5e92-11e9-9771-2d8d9ea119ab.jpg)
+![Input Image](https://user-images.githubusercontent.com/15925203/56093109-7dc7e800-5e92-11e9-9771-2d8d9ea119ab.jpg=600x)
 
 ![Output Screenshot]()
 
 #### Tactile Interface for OCR
 
 - User clicks a picture of image with a , using Yellow Button.
-![Input Image](https://user-images.githubusercontent.com/15925203/56093170-33933680-5e93-11e9-8cf4-c4d7bbfd8a49.jpg)
+Input Image
+<img src="https://user-images.githubusercontent.com/15925203/56093170-33933680-5e93-11e9-8cf4-c4d7bbfd8a49.jpg" alt="Input Image" style="width:400px;"/>
 
 #### Gesture Recognition
 
-- 
-
-![Input Image](https://user-images.githubusercontent.com/15925203/56093163-0b0b3c80-5e93-11e9-9a50-58115d8f0429.jpg)
-
+Gesture Recognition
+<img src="https://user-images.githubusercontent.com/15925203/56093163-0b0b3c80-5e93-11e9-9a50-58115d8f0429.jpg" alt="Input Image" style="width:400px;"/>
