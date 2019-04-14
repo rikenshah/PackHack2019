@@ -69,7 +69,7 @@ def main():
             if pressed:
                 break
 
-    with open("output.txt", "a") as f:
+    with open("output.txt", "w") as f:
         f.write("Description: " + end_result["description"] + "\nEmotion: " + end_result["emotion"] + "\nText: "
             + end_result["text"] + "\n----------------------\n")
 
