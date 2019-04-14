@@ -36,6 +36,8 @@ def image_analyze(ans_dict, image_path):
         image_caption = ''
     print(image_caption)
     ans_dict['description'] = image_caption
+    with open("output.txt", "a") as f:
+        f.write("Description: " + image_caption + "\n---------------------------\n")
 
 if __name__=='__main__':
     image_analyze()

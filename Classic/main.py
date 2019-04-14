@@ -67,6 +67,11 @@ def main():
             #print("GREEN TEXT" + str(green_pressed))
             if pressed:
                 break
+
+    with open("output.txt", "a") as f:
+        f.write("Description: " + end_result["description"] + "\nEmotion: " + end_result["emotion"] + "\nText: " 
+            + end_result["text"] + "\n----------------------\n")
+        
         
 def say(something):
     global engine
