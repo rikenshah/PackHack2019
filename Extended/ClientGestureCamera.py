@@ -4,7 +4,7 @@ import socket, random
 from lib.Leap import CircleGesture, KeyTapGesture, ScreenTapGesture, SwipeGesture
 
 ip_address = '0.tcp.ngrok.io'
-port = 11561
+port = 18658
 
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 s.connect((ip_address, port))
@@ -61,7 +61,8 @@ class SampleListener(Leap.Listener):
                 else:
                     clockwiseness = "counterclockwise"
                 print("Circle in direction : {}".format(finger_direction))
-                s.sendall(f_dir_id.encode())
+                if f_dir_id.encode():
+                    s.sendall(f_dir_id.encode())
         time.sleep(0.3)
 
     def state_string(self, state):

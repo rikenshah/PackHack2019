@@ -57,3 +57,4 @@ while True:
     else:
         engine.say('Nothing to describe in the image.')
 
+socket.close()

@@ -42,7 +42,7 @@ def main():
     p_face_detect.join()
     p_image_analyze.join()
     p_text_recognize.join()
-    
+
     print(end_result)
 
     if end_result["description"]:
@@ -70,7 +70,7 @@ def main():
             #print("GREEN TEXT" + str(green_pressed))
             if pressed:
                 break
-        
+
 def say(something):
     global engine
     global pressed
@@ -95,8 +95,8 @@ def exit_flow():
 
 def cb(name):
     pass
-    
-    
+
+
 if __name__=='__main__':
     manager = Manager()
     engine = pyttsx3.init()

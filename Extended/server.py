@@ -53,4 +53,4 @@ while True:
         engine.runAndWait()
     else:
         engine.say('Nothing to describe in the image.')
-
+socker.close()
