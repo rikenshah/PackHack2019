@@ -1,4 +1,15 @@
 import socket
+from vision_analyze_api_call import image_analyze
+import sys
+import pyttsx3
+from picamera import PiCamera
+from crop import crop_image
+
+engine = pyttsx3.init()
+engine.setProperty('rate', 145)
+engine.setProperty('volume', 1)
+engine.setProperty('voice', 'english+f1')
+camera = PiCamera()
 
 bind_ip = '0.0.0.0'
 bind_port = 8000
@@ -15,11 +26,31 @@ while True:
     data = client_sock.recv(1024)
     if int(data) == 1:
         print("GOt 1")
-    if int(data) == 2:
+    elif int(data) == 2:
         print("GOt 2")
-    if int(data) == 3:
+    elif int(data) == 3:
         print("GOt 3")
-    if int(data) == 4:
+    elif int(data) == 4:
         print("GOt 4")
+    else:
+        continue
     print(data)
+
+    image_path = "images/buttonrpi-yellow.jpg"
+    end_result = {'description':''}
+    
+    camera.start_preview(alpha=200)
+    camera.rotation = 270
+    button_yellow.wait_for_press()
+    camera.capture(image_path)
+    camera.stop_preview()
+
+    crop_image(image_path, int(data))
+    image_analyze(end_result, image_path)
+    print(end_result)
+    if end_result["description"]:
+        engine.say(end_result["description"])
+        engine.runAndWait()
+    else:
+        engine.say('Nothing to describe in the image.')
 
