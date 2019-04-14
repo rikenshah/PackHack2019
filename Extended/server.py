@@ -10,6 +10,7 @@ engine.setProperty('rate', 145)
 engine.setProperty('volume', 1)
 engine.setProperty('voice', 'english+f1')
 camera = PiCamera()
+camera.rotation = 270
 camera.start_preview(alpha=200)
 
 bind_ip = '0.0.0.0'
@@ -39,9 +40,8 @@ while True:
 
     image_path = "images/buttonrpi-yellow.jpg"
     end_result = {'description':''}
-    
+
     # camera.start_preview(alpha=200)
-    camera.rotation = 270
     camera.capture(image_path)
     # camera.stop_preview()
 
