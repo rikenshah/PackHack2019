@@ -30,3 +30,15 @@ Description: A sofa in a living room
 ---------------------------
 Description: A chair sitting in front of a table
 ---------------------------
+Description: A person sitting in a dark room
+---------------------------
+Description: A view of a kitchen
+---------------------------
+Description: 
+---------------------------
+Description: A group of people in a room
+---------------------------
+Description: 
+---------------------------
+Description: A close up of a bicycle
+---------------------------
