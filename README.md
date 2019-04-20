@@ -1,5 +1,8 @@
 # iBuddy (PackHacks 2019)
 
+## Video Demo Link
+- [Demo Link](https://drive.google.com/file/d/1A1Jrb0NLTFacsE9MPR5eai-qg9Sr-qf8/view?usp=sharing)   (Notice- Demo recorded during the Hack-a-thon. Misses some points but gives a quick intro and working of the system.)
+
 ## What it does
 
 The application is divided into two parts.
@@ -30,10 +33,6 @@ Description: A man looking at camera
 Emotion: disgusted
 Text: 
 ----------------------
-Description: A man brushing his teeth in front of a mirror posing for the camera
-Emotion: 
-Text: 
-----------------------
 ```
 
 #### Tactile Interface for OCR
@@ -50,10 +49,8 @@ Text:
 
 ```
 Description: white board with black text
-Text: NOTICE NO EATING OR DRINKING IN THIS AREA
-----------------------
-Description:  
-Text: 
+Emotion: 
+Text: NOTICE NO EATING OR DRINKING IN THIS AREA 
 ----------------------
 ```
 
@@ -64,8 +61,10 @@ Text:
 - That part of the image is sent for analysis and appropriate results are returned.
 
 Gesture Recognition
-<img src="https://user-images.githubusercontent.com/15925203/56093163-0b0b3c80-5e93-11e9-9a50-58115d8f0429.jpg" alt="Input Image" style="width:400px;"/>
+<img src="https://user-images.githubusercontent.com/15925203/56093163-0b0b3c80-5e93-11e9-9a50-58115d8f0429.jpg" alt="Input Image" style="width:400px;"/>  
 
+- Because this is a geture controlled system, the system will give you information according to the part of te picture that you circle.
+  
 ## How we built it
 
 #### Technologies used
@@ -97,6 +96,11 @@ Gesture Recognition
 - Live video stream analysis
 - Better physical device and integration
 
-[GitHub](https://github.com/rikenshah/PackHacks2019)
+## Team
+
+- [Dharmang Bhavsar](https://github.com/dharmangbhavsar)  
+- [Dax Amin](https://github.com/daxamin)  
+- [Riken Shah](https://github.com/rikenshah)  
+- [Vismay Golwala](https://github.com/vismay-golwala)  
 
 
